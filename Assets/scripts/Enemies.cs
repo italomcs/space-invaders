@@ -13,8 +13,10 @@ public class Enemies : MonoBehaviour
     public float refreshMovement;
     public float refreshSpeed;
     public float decrasePercent;
-    public float fireFrequency;
+    public static float fireFrequency;
     public float bulletSpeed;
+
+    public static float refreshSpeedLevel;
 
     float currentRefreshTime;
 
@@ -64,9 +66,25 @@ public class Enemies : MonoBehaviour
 
         Difficulty difficulty = settings.difficulties[settings.currentDifficulty];
         refreshMovement = difficulty.refreshMovement;
-        refreshSpeed = difficulty.refreshSpeed;
+        if(refreshSpeedLevel == 0)
+        {
+            refreshSpeedLevel = difficulty.refreshSpeed;
+        }
+        else
+        {
+            refreshSpeedLevel += 0.5f;
+        }
+        
+        refreshSpeed = refreshSpeedLevel;
         decrasePercent = difficulty.decrasePercent;
-        fireFrequency = difficulty.fireFrequency;
+        if(fireFrequency == 0)
+        {
+            fireFrequency = difficulty.fireFrequency;
+        }
+        else
+        {
+            fireFrequency -= fireFrequency * 0.10f;
+        }
         bulletSpeed = difficulty.bulletSpeed;
 
         enemiesData = settings.enemies;

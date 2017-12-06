@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class GamePlayer : MonoBehaviour
 {
@@ -8,30 +9,38 @@ public class GamePlayer : MonoBehaviour
 
     public int startScore;
 
-    int score;
+    public static int score;
 
-    float lives;
+    static float lives;
 
     Difficulty difficulty;
+
+    public static bool initialized;
 
     void Start ()
     {
         Settings settings = JsonUtility.FromJson<Settings>(DataManager.data.settings);
         difficulty = settings.difficulties[settings.currentDifficulty];
 
-        startScore = settings.startScore;
+        //startScore = settings.startScore;
 
-        scoreText.text = startScore.ToString();
+        scoreText.text = score.ToString();
 
-        lives = difficulty.lives;
+        if (initialized == false)
+        {
+            lives = difficulty.lives;
+        }
         livesText.text = lives.ToString();
+
+        initialized = true;
     }
 
 	void Update ()
     {
         if (lives == 0)
         {
-            transform.parent.GetComponent<Hud>().ActivateGameOver("Você morreu");
+            //transform.parent.GetComponent<Hud>().ActivateGameOver("Você morreu");
+            transform.parent.GetComponent<Hud>().ActivateGameOver("Score:"+score.ToString());
         }
     }
 
@@ -49,8 +58,9 @@ public class GamePlayer : MonoBehaviour
 
     public void Winner()
     {
-        CheckoutScore(UserProfile.userProfile.email, score);
-        transform.parent.GetComponent<Hud>().ActivateWinner("Você eliminou todos os males");
+        //CheckoutScore(UserProfile.userProfile.email, score);
+        //transform.parent.GetComponent<Hud>().ActivateWinner("Você eliminou todos os males");
+        SceneManager.LoadScene("gameplay", LoadSceneMode.Single);
     }
 
     public void GameOver()

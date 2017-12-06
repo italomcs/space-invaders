@@ -11,8 +11,8 @@ public class Player : MonoBehaviour
 
     public GameObject bullet;
 
-    float fireSpeed;
-    float fireTime;
+    //float fireSpeed;
+    //float fireTime;
 
     public Transform addBulletPoint;
 
@@ -44,7 +44,7 @@ public class Player : MonoBehaviour
 
         player = JsonUtility.FromJson<Settings>(DataManager.data.settings).player;
 
-        fireSpeed = player.fireSpeed;
+        //fireSpeed = player.fireSpeed;
 
         GetComponent<Renderer>().material.mainTexture = source.images[player.sprite];
 
@@ -147,6 +147,6 @@ public class Player : MonoBehaviour
         newBullet.GetComponent<Renderer>().material.mainTexture = source.images[player.bulletSprite];
         Destroy(newBullet, 5);
         audioSource.Play();
-        fireTime = 0;
+        //fireTime = 0;
     }
 }
