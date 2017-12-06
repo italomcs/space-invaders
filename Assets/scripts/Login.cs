@@ -13,12 +13,33 @@ public class Login : MonoBehaviour
 
     bool done;
 
+	bool keyboardIsEnable;
+
+	VirtualKeyboard vk = new VirtualKeyboard();
+
     void Start ()
     {
         users = JsonUtility.FromJson<Users>(DataManager.data.users);
 
         UserProfile.userProfile = new User();
     }
+
+	void Update()
+	{
+		if (userName.isFocused || userEmail.isFocused)
+		{
+			if (keyboardIsEnable == false && Input.GetKeyUp(KeyCode.Mouse0))
+			{
+				OpenKeyboard ();
+				keyboardIsEnable = true;
+			}
+		}
+		else if(keyboardIsEnable == true)
+		{
+			CloseKeyboard ();
+			keyboardIsEnable = false;
+		}
+	}
 
     public void Done()
     {
@@ -79,4 +100,18 @@ public class Login : MonoBehaviour
         //SceneManager.LoadScene("start", LoadSceneMode.Single);
         Application.Quit();
     }
+
+	public void OpenKeyboard()
+	{
+		{       
+			vk.ShowTouchKeyboard();
+		}
+	}
+
+	public void CloseKeyboard()
+	{
+		{       
+			vk.HideTouchKeyboard();
+		}
+	}
 }
