@@ -58,16 +58,11 @@ public class Player : MonoBehaviour
     {
         if(death == false)
         {
+            /*
             fireTime += Time.deltaTime*fireSpeed;
             if (fireTime >= 1)
             {
-                GameObject newBullet = Instantiate(bullet, addBulletPoint.position, addBulletPoint.rotation);
-                newBullet.transform.tag = "bullet";
-                newBullet.GetComponent<Bullet>().bulletSpeed = player.bulletSpeed;
-                newBullet.GetComponent<Renderer>().material.mainTexture = source.images[player.bulletSprite];
-                Destroy(newBullet, 5);
-                audioSource.Play();
-                fireTime = 0;
+                Fire();
             }
 
             if (Input.GetKey(KeyCode.Mouse0))
@@ -88,6 +83,30 @@ public class Player : MonoBehaviour
             if (Input.GetKeyUp(KeyCode.Mouse0))
             {
                 pin = false;
+            }
+            */
+
+
+            if (Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.A))
+            {
+                Vector3 leftScreenWorldLimit = Camera.main.ScreenToWorldPoint(new Vector3(0, 0, 0));
+                if(Vector3.Distance(new Vector3(transform.position.x,0,0), new Vector3(leftScreenWorldLimit.x,0,0))> 0.5f)
+                {
+                    transform.Translate(-transform.right * Time.deltaTime * 5);
+                }
+            }
+            else if(Input.GetKey(KeyCode.RightArrow) || Input.GetKey(KeyCode.D))
+            {
+                Vector3 rightScreenWorldLimit = Camera.main.ScreenToWorldPoint(new Vector3(Screen.width, 0, 0));
+                if (Vector3.Distance(new Vector3(transform.position.x, 0, 0), new Vector3(rightScreenWorldLimit.x, 0, 0)) > 0.5f)
+                {
+                    transform.Translate(transform.right * Time.deltaTime * 5);
+                }
+            }
+
+            if (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.Return))
+            {
+                Fire();
             }
 
             foreach (GameObject bullet in GameObject.FindGameObjectsWithTag("enemyBullet"))
@@ -118,5 +137,16 @@ public class Player : MonoBehaviour
         death = true;
         audioSource.clip = source.sounds[0];
         audioSource.Play();
+    }
+
+    public void Fire()
+    {
+        GameObject newBullet = Instantiate(bullet, addBulletPoint.position, addBulletPoint.rotation);
+        newBullet.transform.tag = "bullet";
+        newBullet.GetComponent<Bullet>().bulletSpeed = player.bulletSpeed;
+        newBullet.GetComponent<Renderer>().material.mainTexture = source.images[player.bulletSprite];
+        Destroy(newBullet, 5);
+        audioSource.Play();
+        fireTime = 0;
     }
 }
