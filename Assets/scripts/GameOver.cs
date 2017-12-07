@@ -6,12 +6,11 @@ public class GameOver : MonoBehaviour
 {
     public Text info;
 
+    public DataManager dataManager;
+
     private void Start()
     {
-        GamePlayer.score = 0;
-        GamePlayer.initialized = false;
-        Enemies.fireFrequency = 0;
-        Enemies.refreshSpeedLevel = 0;
+        dataManager.SaveData();
     }
 
     void Update ()
@@ -19,7 +18,7 @@ public class GameOver : MonoBehaviour
 		if(Input.anyKeyDown)
         {
             //SceneManager.LoadScene("start", LoadSceneMode.Single);
-            SceneManager.LoadScene("login", LoadSceneMode.Single);
+            SceneManager.LoadScene("leaderboard", LoadSceneMode.Single);
         }
 	}
 

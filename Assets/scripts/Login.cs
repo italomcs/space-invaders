@@ -22,6 +22,10 @@ public class Login : MonoBehaviour
         users = JsonUtility.FromJson<Users>(DataManager.data.users);
 
         UserProfile.userProfile = new User();
+        GamePlayer.score = 0;
+        GamePlayer.initialized = false;
+        Enemies.fireFrequency = 0;
+        Enemies.refreshSpeedLevel = 0;
     }
 
 	void Update()

@@ -227,6 +227,7 @@
     <Compile Include="Assets\scripts\GameOver.cs" />
     <Compile Include="Assets\scripts\GamePlayer.cs" />
     <Compile Include="Assets\scripts\Hud.cs" />
+    <Compile Include="Assets\scripts\Leaderboard.cs" />
     <Compile Include="Assets\scripts\Login.cs" />
     <Compile Include="Assets\scripts\PlayAudio.cs" />
     <Compile Include="Assets\scripts\Player.cs" />

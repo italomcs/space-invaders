@@ -40,8 +40,15 @@ public class GamePlayer : MonoBehaviour
         if (lives == 0)
         {
             //transform.parent.GetComponent<Hud>().ActivateGameOver("Você morreu");
+            CheckoutScore(UserProfile.userProfile.email, score);
             transform.parent.GetComponent<Hud>().ActivateGameOver("Score:"+score.ToString());
         }
+
+        //if (Input.GetKeyDown(KeyCode.Alpha1))
+        //{
+        //    CheckoutScore(UserProfile.userProfile.email, score);
+        //    transform.parent.GetComponent<Hud>().ActivateGameOver("Score:" + score.ToString());
+        //}
     }
 
     public void AddScore(int scoreToAdd)
