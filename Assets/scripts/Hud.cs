@@ -16,7 +16,7 @@ public class Hud : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            SceneManager.LoadScene("login", LoadSceneMode.Single);
+            SceneManager.LoadScene("start", LoadSceneMode.Single);
         }
     }
 

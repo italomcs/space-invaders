@@ -17,6 +17,9 @@ public class Leaderboard : MonoBehaviour
     int page;
     int pages;
 
+    public GameObject emptyInfo;
+    public GameObject pageButtons;
+
     void Start ()
     {
         users = JsonUtility.FromJson<Users>(DataManager.data.users);
@@ -25,6 +28,14 @@ public class Leaderboard : MonoBehaviour
         page = 0;
 
         LoadLeaderboard();
+        if(leaderboardList.Count != 0)
+        {
+            emptyInfo.SetActive(false);
+            if(leaderboardList.Count > numberToshow)
+            {
+                pageButtons.SetActive(true);
+            }
+        }
         ShowLeaderboard(0);
     }
 
@@ -123,6 +134,6 @@ public class Leaderboard : MonoBehaviour
 
     public void Done()
     {
-        SceneManager.LoadScene("login", LoadSceneMode.Single);
+        SceneManager.LoadScene("start", LoadSceneMode.Single);
     }
 }

@@ -101,8 +101,7 @@ public class Login : MonoBehaviour
 
     public void Cancel()
     {
-        //SceneManager.LoadScene("start", LoadSceneMode.Single);
-        Application.Quit();
+        SceneManager.LoadScene("start", LoadSceneMode.Single);
     }
 
 	public void OpenKeyboard()

@@ -226,6 +226,7 @@
     <Compile Include="Assets\scripts\EnemyDeath.cs" />
     <Compile Include="Assets\scripts\GameOver.cs" />
     <Compile Include="Assets\scripts\GamePlayer.cs" />
+    <Compile Include="Assets\scripts\GameStart.cs" />
     <Compile Include="Assets\scripts\Hud.cs" />
     <Compile Include="Assets\scripts\Leaderboard.cs" />
     <Compile Include="Assets\scripts\Login.cs" />
